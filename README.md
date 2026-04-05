@@ -1,13 +1,14 @@
 # Student Grade Analyzer
 
-A Python CLI tool for managing and analyzing student grades — built with clean modular code, colored terminal output, statistics, and multi-format report export.
+A Python project for managing and analyzing student grades — featuring a colorful CLI tool and an interactive web dashboard built with Streamlit.
 
 ## Features
 
-- **Interactive menu** — add, edit, delete, and search students
+- **Web dashboard** — interactive charts, rankings, search, and export in the browser
+- **Interactive CLI** — add, edit, delete, and search students in the terminal
 - **Colored terminal output** — grades highlighted green/yellow/red
 - **Grade statistics** — average, median, standard deviation, GPA (4.0 scale)
-- **Grade distribution chart** — visual ASCII bar chart per letter grade
+- **Grade distribution chart** — visual bar chart per letter grade
 - **Student ranking** — sorted leaderboard with medal positions
 - **Partial name search** — find students by full or partial name
 - **CSV import** — bulk load students from a CSV file
@@ -18,7 +19,8 @@ A Python CLI tool for managing and analyzing student grades — built with clean
 
 ```
 student-grade-analyzer/
-├── main.py               # Entry point & interactive menu
+├── dashboard.py          # Streamlit web dashboard
+├── main.py               # CLI entry point & interactive menu
 ├── student.py            # Student class + grade/GPA helpers
 ├── analyzer.py           # Statistics calculations
 ├── display.py            # Colored terminal UI
@@ -34,7 +36,7 @@ student-grade-analyzer/
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/student-grade-analyzer.git
+git clone https://github.com/mostafaahmedaly2003/student-grade-analyzer.git
 cd student-grade-analyzer
 ```
 
@@ -44,15 +46,36 @@ cd student-grade-analyzer
 pip install -r requirements.txt
 ```
 
-> `colorama` is the only dependency — it adds colored output on Windows, macOS, and Linux. The program works without it too (colors are just skipped).
+> Dependencies: `streamlit` and `pandas` for the dashboard, `colorama` for CLI colors (optional — the CLI works without it).
 
-### 3. Run the program
+### 3a. Run the web dashboard
+
+```bash
+streamlit run dashboard.py
+```
+
+Opens automatically at `http://localhost:8501` in your browser.
+
+### 3b. Run the CLI
 
 ```bash
 python main.py
 ```
 
-## Usage
+## Dashboard
+
+The web dashboard includes:
+
+- **KPI cards** — class average, median, GPA, pass/fail counts
+- **Grade distribution bar chart** — students per letter grade
+- **Pass vs Fail chart**
+- **Interactive ranking table** — color-coded by grade
+- **Live search** — filter students by name instantly
+- **One-click export** — download JSON or CSV report
+
+Load data by uploading a CSV or clicking **Load sample data** in the sidebar.
+
+## CLI Usage
 
 On launch you get a numbered menu:
 
@@ -113,7 +136,8 @@ python -m unittest test.py -v
 ## Requirements
 
 - Python 3.8+
-- colorama (optional, for colored output)
+- streamlit, pandas (for the dashboard)
+- colorama (optional, for CLI colors)
 
 ## License
 
