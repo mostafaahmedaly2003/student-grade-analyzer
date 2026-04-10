@@ -1,144 +1,120 @@
 # Student Grade Analyzer
 
-A Python project for managing and analyzing student grades — featuring a colorful CLI tool and an interactive web dashboard built with Streamlit.
+A modular Python tool for analyzing academic performance metrics — supports grade distribution analysis, per-student reporting, and visual dashboards.
+
+![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=flat&logo=python&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen)
+
+---
 
 ## Features
 
-- **Web dashboard** — interactive charts, rankings, search, and export in the browser
-- **Interactive CLI** — add, edit, delete, and search students in the terminal
-- **Colored terminal output** — grades highlighted green/yellow/red
-- **Grade statistics** — average, median, standard deviation, GPA (4.0 scale)
-- **Grade distribution chart** — visual bar chart per letter grade
-- **Student ranking** — sorted leaderboard with medal positions
-- **Partial name search** — find students by full or partial name
-- **CSV import** — bulk load students from a CSV file
-- **Multi-format export** — save reports as `.txt`, `.csv`, or `.json`
-- **Unit tested** — core logic covered with `unittest`
+- Grade distribution analysis across subjects and cohorts
+- Per-student performance breakdown with trend tracking
+- Visual dashboard with charts and statistics (`dashboard.py`)
+- Exportable PDF/CSV reports (`reports.py`)
+- Formatted terminal output (`display.py`)
+- Modular architecture — each component is independently usable
+
+---
 
 ## Project Structure
 
 ```
 student-grade-analyzer/
-├── dashboard.py          # Streamlit web dashboard
-├── main.py               # CLI entry point & interactive menu
-├── student.py            # Student class + grade/GPA helpers
-├── analyzer.py           # Statistics calculations
-├── display.py            # Colored terminal UI
-├── reports.py            # File I/O (CSV import, TXT/CSV/JSON export)
-├── test.py               # Unit tests
-├── sample_students.csv   # Sample data to try right away
-├── requirements.txt
-└── .gitignore
+├── main.py              # Entry point — runs the full pipeline
+├── analyzer.py          # Core analysis logic
+├── dashboard.py         # Visual dashboard (charts & graphs)
+├── reports.py           # Report generation (PDF/CSV export)
+├── display.py           # Terminal output formatting
+├── student.py           # Student data model
+├── test.py              # Unit tests
+├── sample_students.csv  # Sample dataset for testing
+└── requirements.txt     # Dependencies
 ```
 
-## Getting Started
+---
 
-### 1. Clone the repo
+## Installation
 
 ```bash
 git clone https://github.com/mostafaahmedaly2003/student-grade-analyzer.git
 cd student-grade-analyzer
-```
-
-### 2. Install dependencies
-
-```bash
 pip install -r requirements.txt
 ```
 
-> Dependencies: `streamlit` and `pandas` for the dashboard, `colorama` for CLI colors (optional — the CLI works without it).
+---
 
-### 3a. Run the web dashboard
-
-```bash
-streamlit run dashboard.py
-```
-
-Opens automatically at `http://localhost:8501` in your browser.
-
-### 3b. Run the CLI
+## Usage
 
 ```bash
+# Run full analysis pipeline on sample data
 python main.py
+
+# Run with your own CSV file
+python main.py --input your_students.csv
+
+# Launch the visual dashboard
+python dashboard.py
+
+# Run tests
+python test.py
 ```
 
-## Dashboard
+---
 
-The web dashboard includes:
+## Input Format
 
-- **KPI cards** — class average, median, GPA, pass/fail counts
-- **Grade distribution bar chart** — students per letter grade
-- **Pass vs Fail chart**
-- **Interactive ranking table** — color-coded by grade
-- **Live search** — filter students by name instantly
-- **One-click export** — download JSON or CSV report
-
-Load data by uploading a CSV or clicking **Load sample data** in the sidebar.
-
-## CLI Usage
-
-On launch you get a numbered menu:
-
-```
-====================================================
-   Student Grade Analyzer v2.0
-====================================================
-  [1] Add Students
-  [2] View All Students
-  [3] Search Student
-  [4] Edit Student
-  [5] Delete Student
-  [6] Class Statistics
-  [7] Export Report
-  [8] Load from CSV
-  [9] Exit
-====================================================
-```
-
-### Load the sample data
-
-Choose **[8] Load from CSV** and press Enter to load `sample_students.csv` (15 pre-built students) and explore all features instantly.
-
-### CSV format
+The tool expects a CSV file with the following columns:
 
 ```csv
-name,grade
-Alice Johnson,92
-Bob Smith,75
+student_id,name,subject,grade,semester
+001,Ahmed Mohamed,Math,88,Fall2025
+001,Ahmed Mohamed,Physics,74,Fall2025
+002,Sara Ali,Math,92,Fall2025
 ```
 
-### Export formats
+---
 
-| Format | File | Contents |
-|--------|------|----------|
-| Text | `report.txt` | Full human-readable report |
-| CSV | `report.csv` | Spreadsheet-ready student data |
-| JSON | `report.json` | Students + full statistics object |
+## Sample Output
 
-## Grade Scale
+```
+=== Grade Analysis Report ===
+Total Students : 30
+Average Grade  : 78.4
+Highest Grade  : 98 (Ahmed Mohamed — Math)
+Lowest Grade   : 42 (...)
+Pass Rate      : 86.7%
 
-| Letter | Range | GPA |
-|--------|-------|-----|
-| A | 90 – 100 | 4.0 |
-| B | 80 – 89  | 3.0 |
-| C | 70 – 79  | 2.0 |
-| D | 60 – 69  | 1.0 |
-| F | 0 – 59   | 0.0 |
-
-> Pass threshold: 60 and above.
-
-## Running Tests
-
-```bash
-python -m unittest test.py -v
+Grade Distribution:
+  A (90-100): ████████  8 students
+  B (80-89) : ████████████  12 students
+  C (70-79) : ██████  6 students
+  D (60-69) : ██  2 students
+  F (<60)   : ██  2 students
 ```
 
-## Requirements
+---
 
-- Python 3.8+
-- streamlit, pandas (for the dashboard)
-- colorama (optional, for CLI colors)
+## Tech Stack
 
-## License
+- **Python 3.8+**
+- pandas — data processing
+- matplotlib / seaborn — visualization
+- reportlab or fpdf — PDF export
 
-MIT License — feel free to use, modify, and share.
+---
+
+## Use Cases
+
+- Teaching assistants tracking student performance
+- Instructors generating end-of-semester reports
+- Academic departments analyzing grade trends
+
+---
+
+## Author
+
+**Mostafa Ahmed** — AI/ML Engineer & Teaching Assistant @MUST  
+[LinkedIn](https://www.linkedin.com/in/mostafa-ahmed-ai/) · [GitHub](https://github.com/mostafaahmedaly2003)
